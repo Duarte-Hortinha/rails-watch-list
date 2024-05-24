@@ -1,0 +1,14 @@
+<h1 class="text-center m-2 p-2 text-info">My lists</h1>
+
+
+<div class="card-product text-center">
+<% @lists.each do |list| %>
+  <%= link_to list_path(list) do %>
+    <div class="card-product-infos fs-2">
+      <span class="text-primary m-4 p-4"><%= list.name %></span>
+    </div>
+  <% end %>
+<% end %>
+</div>
+
+<span class="m-3 p-3"><%= link_to "New list", new_list_path, class: "btn btn-primary" %></span>

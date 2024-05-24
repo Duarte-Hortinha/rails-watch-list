@@ -1,0 +1,30 @@
+<h1 class="p-3 border rounded-3"><em>Show</em> page!</h1>
+
+<div class="fs-4">
+  <%= @list.name %>
+</div>
+
+<div class="text-primary">
+  <%= link_to "Add movie", new_list_bookmark_path(@list), class: "btn btn-primary" %>
+</div>
+
+<div class="row">
+  <% @list.bookmarks.each do |bookmark| %>
+      <div class="m-2 p-2">
+        <%= image_tag bookmark.movie.poster_url, width: "100%", heigth: "auto" %>
+        <div class="m-1 p-1">
+          <h2><%= bookmark.movie.title %></h2>
+          <p><%= bookmark.movie.overview %></p>
+          <h3 class="h3">Reviews for this movie:</h3>
+          <p class="text-secondary"><%= bookmark.comment %></p>
+          <span class="btn btn-danger"><%=
+            link_to "Delete Movie: #{bookmark.movie.title}!",
+            bookmark_path(bookmark),
+            data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the movie?"} %>
+          </span>
+  <% end %>
+        </div>
+      </div>
+</div>
+
+<h2 class="text-primary m-4 text-center"><%= link_to "Go back to list of lists", lists_path %></h2>
